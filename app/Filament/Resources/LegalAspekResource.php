@@ -18,19 +18,25 @@ class LegalAspekResource extends Resource
 {
     protected static ?string $model = LegalAspek::class;
 
+    protected static ?string $navigationLabel = 'Legal Aspek';
+
+    protected static ?string $modelLabel = 'Legal Aspek';
+
+    protected static ?string $pluralLabel = 'Legal Aspek';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function query()
-    {
-        $query = parent::query();
+    // public static function query()
+    // {
+    //     $query = parent::query();
 
-        if (!Auth::user()->is_admin) {
-            // Hanya tampilkan postingan milik pengguna jika bukan admin
-            $query->where('user_id', Auth::id());
-        }
+    //     if (!Auth::user()->is_admin) {
+    //         // Hanya tampilkan postingan milik pengguna jika bukan admin
+    //         $query->where('user_id', Auth::id());
+    //     }
 
-        return $query;
-    }
+    //     return $query;
+    // }
 
     public static function form(Form $form): Form
     {
@@ -76,10 +82,22 @@ class LegalAspekResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
+            ])
+            ->modifyQueryUsing(function (Builder $query) {
+                $userId = Auth::id();
+                // Asumsikan bahwa pengguna memiliki metode atau properti untuk mendapatkan role
+                $roles = Auth::user()->roles->pluck('name'); // Atau metode lain jika berbeda
+                $roleNames = $roles->implode(', ');
+                if ($roleNames=='super_admin'){
+                    return $query;
+                }else{
+                    return $query->where('user_id', $userId);
+                }
+
+            });
     }
 
     public static function getRelations(): array
@@ -88,10 +106,10 @@ class LegalAspekResource extends Resource
             //
         ];
     }
-    protected static function getTableQuery(): Builder
-    {
-        return parent::getTableQuery()->where('user_id', Auth::id());
-    }
+    // protected static function getTableQuery(): Builder
+    // {
+    //     return parent::getTableQuery()->where('user_id', Auth::id());
+    // }
 
     public static function getPages(): array
     {

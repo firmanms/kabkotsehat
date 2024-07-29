@@ -17,6 +17,12 @@ class MasterIndikatorResource extends Resource
 {
     protected static ?string $model = MasterIndikator::class;
 
+    protected static ?string $navigationLabel = 'Master Indikator';
+
+    protected static ?string $modelLabel = 'Master Indikator';
+
+    protected static ?string $pluralLabel = 'Master Indikator';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

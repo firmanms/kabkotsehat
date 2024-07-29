@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('master_tatanans_id')->constrained()->cascadeOnDelete();
             $table->foreignId('master_indikators_id')->constrained()->cascadeOnDelete();
             $table->foreignId('master_jawaban_indikators_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('file_bukti')->nullable();;
-            $table->string('penghargaan')->nullable();;
-            $table->string('file_bukti_penghargaan')->nullable();;
+            $table->string('file_bukti')->nullable();
+            $table->string('penghargaan')->nullable();
+            $table->string('file_bukti_penghargaan')->nullable();
+            $table->integer('assesment_kabupaten')->nullable();
             $table->integer('assesment_provinsi')->nullable();
             $table->integer('assesment_nasional')->nullable();
             $table->mediumText('catatan_anggota')->nullable();

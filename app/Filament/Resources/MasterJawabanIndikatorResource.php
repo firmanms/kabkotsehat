@@ -17,6 +17,12 @@ class MasterJawabanIndikatorResource extends Resource
 {
     protected static ?string $model = MasterJawabanIndikator::class;
 
+    protected static ?string $navigationLabel = 'Master Jawaban Indikator';
+
+    protected static ?string $modelLabel = 'Master Jawaban Indikator';
+
+    protected static ?string $pluralLabel = 'Master Jawaban Indikator';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

@@ -17,6 +17,12 @@ class MasterTatananResource extends Resource
 {
     protected static ?string $model = MasterTatanan::class;
 
+    protected static ?string $navigationLabel = 'Master Tatanan';
+
+    protected static ?string $modelLabel = 'Master Tatanan';
+
+    protected static ?string $pluralLabel = 'Master Tatanan';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // public static function shouldRegisterNavigation(): bool
@@ -49,7 +55,11 @@ class MasterTatananResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                ->label('Tatanan')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('name')
+                ->label('Nama Tatanan')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('catatan')
                 ->searchable(),
